@@ -5,17 +5,17 @@ def call(body) {
     body()
     pipelineParams.each { println(it) }
 
-
     pipeline {
         agent { label "nodejs-agent" }
     
-    stages {
-            stage('Build') {
-                steps {
-                    script {
-                        sh("npm install")
+        stages {
+                stage('Build') {
+                    steps {
+                        script {
+                            sh("npm install")
+                        }
                     }
-                }
-            }    
+                }    
+        }
     }
 }
