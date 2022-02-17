@@ -15,7 +15,14 @@ def call(body) {
                             sh("npm install")
                         }
                     }
-                }    
+                } 
+                stage('Publish') {
+                    steps {
+                        script {
+                            sh("npm version patch")
+                        }
+                    }
+                }     
         }
     }
 }
