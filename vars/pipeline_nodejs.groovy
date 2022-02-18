@@ -6,53 +6,66 @@ def call(body) {
     pipelineParams.each { println(it) }
 
     pipeline {
-        agent { label "nodejs-agent" }
-        environment {
-            NEXUS_VERSION = "nexus3"
-            NEXUS_PROTOCOL = "http"
-            NEXUS_URL = "http://34.122.90.105:30707"
-            NEXUS_REPOSITORY = "npm-gorilla-int"
-            NEXUS_CREDENTIAL_ID = "nexuscredentials"
-
-    }
-    
+        agent { label "nodejs-agent" }    
         stages {
-                stage('Build') {
+                stage('Checkout') {
                     steps {
-                        script {
-                            sh("npm install")
-                            withCredentials([usernamePassword(credentialsId: 'nexuscredentials', passwordVariable: 'NEXUS_PASSWORD', usernameVariable: 'NEXUS_USERNAME')]) {
-                            sh("npm publish")
-                            }
-                            //sh("npm-publish-nexus --domain=http://34.122.90.105:30707/ --repo=npm-gorilla-int")
-                        }
+                        scmSkip(deleteBuild: true, skipPattern:'.*\\[ci skip\\].*')
                     }
                 }
 
+                stage('Build') {
+                    steps {
+                        script {
+                            sh("npm install")                            
+                            }
+                        }
+                }
 
-        // stage('NPM: Config') {
-        // withCredentials([usernamePassword(credentialsId: nexusCredentialsId, passwordVariable: 'NEXUS_PASSWORD', usernameVariable: 'NEXUS_USERNAME')]) {
-        //     def token = sh(returnStdout: true, script: "set +x && curl -s -k -H \"Accept: application/json\" -H \"Content-Type:application/json\" -X PUT --data '{\"name\": \"$NEXUS_USERNAME\", \"password\": \"$NEXUS_PASSWORD\"}' https://nexus-repository.net:8088/repository/my-npm/-/user/org.couchdb.user:$NEXUS_USERNAME 2>&1 | grep -Po '(?<=\"token\":\")[^\"]*'")
-        //     sh "set +x && echo \"//nexus-repository.net:8088/repository/my-npm/:_authToken=$token\" >> .npmrc"
-        // }
-        // }
+        }
+    }
+}                
+
+// static String urlShareLibrary = "https://github.com/fabianrp7/jsl.git"
+//    static String gitCredentialsId = "github_login"
+//    static String nameJenkinsSharedLib = "jsl"
+//    static String nexusCredentialsId = "nexus-login" 
+//    static String nexusUrl = "34.123.87.228:30777"   
+//    static String nexusGroupId = "raw"
+//    static String nexusVersion = "nexus3"  
+//    static String nexusRepository = 'artifacts_'
+
+
+//         void nexusArtifactUpload(project){
+//         def now = new Date()
+//         def creationDate = now.format("yyyyMMddHHmm", TimeZone.getTimeZone("GMT-5:00"))
+//             nexusArtifactUploader(
+//                     nexusVersion: 'nexus3',
+//                     protocol: 'http',
+//                     nexusUrl: 'http://34.122.90.105:30707/',
+//                     groupId: '',
+//                     version: scriptPL.env.JOB_BASE_NAME+"_${scriptPL.env.BUILD_ID}_${creationDate}",                    
+//                     repository: GlobalVars.nexusRepository+scriptPL.env.JOB_BASE_NAME,
+//                     credentialsId: 'nexus-login',
+//                     artifacts: [
+//                         [artifactId: project.name,
+//                         classifier: '',
+//                         file: project.artifactFile,
+//                         type: 'zip']
+//                     ]
+//                     )
+//     }
+
+
+
+
+
+//     }
 
                    
 
-                // stage('Docker build') {
-                //     steps {
-                //         script {
-                //             def dockerImage = docker.build("my-image:${env.BUILD_ID}")
-                        
-                //             /* Push the container to the docker Hub */
-                //             dockerImage.push()
-
-                //             /* Remove docker image*/
-                //             sh 'docker rmi -f my-image:${env.BUILD_ID}'
-                //         }
-                //     }
-                // } 
                 
-        }
-    }
-}
+                
+//         }
+//     }
+// }
