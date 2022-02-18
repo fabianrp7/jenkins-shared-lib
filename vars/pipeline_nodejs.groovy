@@ -20,6 +20,7 @@ def call(body) {
                     steps {
                         script {
                             sh("npm config ls -l | grep config")
+                            sh("cat /root/.npmrc")
                         }
                     }
                 }     
