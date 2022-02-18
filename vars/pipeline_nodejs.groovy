@@ -21,7 +21,9 @@ def call(body) {
                     steps {
                         script {
                             sh("npm install")
+                            withCredentials([usernamePassword(credentialsId: nexuscredentials, passwordVariable: 'NEXUS_PASSWORD', usernameVariable: 'NEXUS_USERNAME')]) {
                             sh("npm publish")
+                            }
                             //sh("npm-publish-nexus --domain=http://34.122.90.105:30707/ --repo=npm-gorilla-int")
                         }
                     }
