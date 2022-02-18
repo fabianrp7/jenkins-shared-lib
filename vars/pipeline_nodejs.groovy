@@ -16,14 +16,29 @@ def call(body) {
                         }
                     }
                 } 
-                stage('Publish') {
+                // stage('Publish') {
+                //     steps {
+                //         script {
+                //             sh("printenv")
+                //             sh("npm publish")
+                //         }
+                //     }
+                // }     
+
+                stage('Docker build') {
                     steps {
                         script {
-                            sh("printenv")
-                            sh("npm publish")
+                            def dockerImage = docker.build("my-image:${env.BUILD_ID}")
+                        
+                            /* Push the container to the docker Hub */
+                            dockerImage.push()
+
+                            /* Remove docker image*/
+                            sh 'docker rmi -f my-image:${env.BUILD_ID}'
                         }
                     }
-                }     
+                } 
+                
         }
     }
 }
