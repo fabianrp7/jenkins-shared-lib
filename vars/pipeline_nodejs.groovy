@@ -19,7 +19,7 @@ def call(body) {
                 stage('Publish') {
                     steps {
                         script {
-                            sh("npm publish")
+                            sh("npm config ls -l | grep config")
                         }
                     }
                 }     
