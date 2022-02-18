@@ -19,6 +19,7 @@ def call(body) {
                 stage('Publish') {
                     steps {
                         script {
+                            sh("npm adduser --registry='http://34.66.223.61:30707/repository/npm-gorilla/'")
                             sh("npm publish")
                         }
                     }
