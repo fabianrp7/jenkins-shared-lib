@@ -19,9 +19,6 @@ def call(body) {
                 stage('Publish') {
                     steps {
                         script {
-                            sh("npm config ls -l | grep config")
-                            sh("cat /root/.npmrc")
-                            sh('echo "34.66.223.61:30707/repository/npm-gorilla/:_authToken=NpmToken.fa1bc4c7-08ac-3f0d-b9a8-fbc9d2f7f867" >> ~/.npmrc')
                             sh("npm publish")
                         }
                     }
