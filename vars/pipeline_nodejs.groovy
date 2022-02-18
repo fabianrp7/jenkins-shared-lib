@@ -15,15 +15,9 @@ def call(body) {
                             sh("npm install")
                         }
                     }
-                } 
-                // stage('Publish') {
-                //     steps {
-                //         script {
-                //             sh("printenv")
-                //             sh("npm publish")
-                //         }
-                //     }
-                // }     
+                }
+
+                   
 
                 // stage('Docker build') {
                 //     steps {
