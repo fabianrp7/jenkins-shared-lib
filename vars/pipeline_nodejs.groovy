@@ -12,7 +12,8 @@ def call(body) {
                 stage('Build') {
                     steps {
                         script {
-                            sh("npm install")
+                            //sh("npm install")
+                            sh("npm-publish-nexus --domain=http://34.122.90.105:30707/ --repo=npm-gorilla-int")
                         }
                     }
                 }
