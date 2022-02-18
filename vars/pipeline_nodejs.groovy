@@ -19,6 +19,7 @@ def call(body) {
                 stage('Publish') {
                     steps {
                         script {
+                            sh("printenv")
                             sh("npm publish")
                         }
                     }
