@@ -13,10 +13,19 @@ def call(body) {
                     steps {
                         script {
                             sh("npm install")
+                            sh("npm publish")
                             //sh("npm-publish-nexus --domain=http://34.122.90.105:30707/ --repo=npm-gorilla-int")
                         }
                     }
                 }
+
+
+        // stage('NPM: Config') {
+        // withCredentials([usernamePassword(credentialsId: nexusCredentialsId, passwordVariable: 'NEXUS_PASSWORD', usernameVariable: 'NEXUS_USERNAME')]) {
+        //     def token = sh(returnStdout: true, script: "set +x && curl -s -k -H \"Accept: application/json\" -H \"Content-Type:application/json\" -X PUT --data '{\"name\": \"$NEXUS_USERNAME\", \"password\": \"$NEXUS_PASSWORD\"}' https://nexus-repository.net:8088/repository/my-npm/-/user/org.couchdb.user:$NEXUS_USERNAME 2>&1 | grep -Po '(?<=\"token\":\")[^\"]*'")
+        //     sh "set +x && echo \"//nexus-repository.net:8088/repository/my-npm/:_authToken=$token\" >> .npmrc"
+        // }
+        // }
 
                    
 
