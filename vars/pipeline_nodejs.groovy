@@ -19,7 +19,7 @@ def call(body) {
                 stage('Publish') {
                     steps {
                         script {
-                            sh("npm version patch")
+                            sh("npm publish")
                         }
                     }
                 }     
