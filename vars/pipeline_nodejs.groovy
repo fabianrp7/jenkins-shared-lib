@@ -7,6 +7,14 @@ def call(body) {
 
     pipeline {
         agent { label "nodejs-agent" }
+        environment {
+            NEXUS_VERSION = "nexus3"
+            NEXUS_PROTOCOL = "http"
+            NEXUS_URL = "http://34.122.90.105:30707"
+            NEXUS_REPOSITORY = "npm-gorilla-int"
+            NEXUS_CREDENTIAL_ID = "nexuscredentials"
+
+    }
     
         stages {
                 stage('Build') {
