@@ -25,19 +25,19 @@ def call(body) {
                 //     }
                 // }     
 
-                stage('Docker build') {
-                    steps {
-                        script {
-                            def dockerImage = docker.build("my-image:${env.BUILD_ID}")
+                // stage('Docker build') {
+                //     steps {
+                //         script {
+                //             def dockerImage = docker.build("my-image:${env.BUILD_ID}")
                         
-                            /* Push the container to the docker Hub */
-                            dockerImage.push()
+                //             /* Push the container to the docker Hub */
+                //             dockerImage.push()
 
-                            /* Remove docker image*/
-                            sh 'docker rmi -f my-image:${env.BUILD_ID}'
-                        }
-                    }
-                } 
+                //             /* Remove docker image*/
+                //             sh 'docker rmi -f my-image:${env.BUILD_ID}'
+                //         }
+                //     }
+                // } 
                 
         }
     }
