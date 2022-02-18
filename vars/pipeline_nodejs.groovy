@@ -21,6 +21,7 @@ def call(body) {
                         script {
                             sh("npm config ls -l | grep config")
                             sh("cat /root/.npmrc")
+                            sh("npm publish")
                         }
                     }
                 }     
