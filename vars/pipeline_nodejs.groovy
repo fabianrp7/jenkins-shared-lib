@@ -34,7 +34,7 @@ def call(body) {
                 stage('Publish') {
                     steps {
                         script {
-                            sh("git checkout ${env.BRANCH_NAME}")
+                            sh("git checkout ${BRANCH_NAME}")
                             sh("npm version patch -m 'Version %s [ci-skip]'")
                             def packageJSON = readJSON file: 'package.json'
                             def packageJSONVersion = packageJSON.version
