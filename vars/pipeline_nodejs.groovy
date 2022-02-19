@@ -35,10 +35,12 @@ def call(body) {
                     steps {
                         script {
                             sleep(time:60,unit:"MINUTES")
+                            sh("git config --global user.email '7fabian.rodriguez@gmail.com'")
                             // sh("git checkout ${scm.branches[0].name}")
                             // sh("npm --no-git-tag-version version patch -m 'Version %s [ci-skip]'")
                             // def packageJSON = readJSON file: 'package.json'
-                            //     def packageJSONVersion = packageJSON.version                                
+                            // def packageJSONVersion = packageJSON.version 
+                            // sh("git push")                               
                             //     sh("git push https://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@github.com/fabianrp7/timeoff-management-application.git")
                                 //sh("git push HEAD:${scm.branches[0].name} HEAD:${scm.branches[0].name}")         
                                                             
