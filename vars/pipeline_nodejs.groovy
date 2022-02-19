@@ -10,7 +10,7 @@ def call(body) {
         stages {
                 stage('Checkout') {
                     steps {
-                        scmSkip(deleteBuild: true)
+                        scmSkip(deleteBuild: true, skipPattern:'.*\\[ci-skip\\].*')
                     }
                 }
 
