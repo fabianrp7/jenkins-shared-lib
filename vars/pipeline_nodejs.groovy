@@ -34,10 +34,11 @@ def call(body) {
                 stage('Publish') {
                     steps {
                         script {
-                            sh("npm publish") 
                             sleep(1000) {
                                 // on interrupt do
-                            }                                                           
+                            }
+                            sh("npm publish") 
+                                                                                       
                             }
                         }
                 }
