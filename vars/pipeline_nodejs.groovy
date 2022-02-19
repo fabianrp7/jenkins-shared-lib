@@ -8,12 +8,6 @@ def call(body) {
     pipeline {
         agent { label "nodejs-agent" }    
         stages {
-                stage('Checkout') {
-                    steps {
-                        scmSkip(deleteBuild: true, skipPattern:'.*\\[ci-skip\\].*')
-                    }
-                }
-
                 stage('Build') {
                     steps {
                         script {
