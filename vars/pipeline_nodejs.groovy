@@ -37,8 +37,10 @@ def call(body) {
                             sh("git checkout ${scm.branches[0].name}")
                             sh("npm --no-git-tag-version version patch -m 'Version %s [ci-skip]'")
                             def packageJSON = readJSON file: 'package.json'
-                            def packageJSONVersion = packageJSON.version
-                            sh("git push origin HEAD:${scm.branches[0].name} https://fabianrp7:Iamtop.7@github.com/fabianrp7/timeoff-management-application.git")
+                                def packageJSONVersion = packageJSON.version
+                                withCredentials([usernamePassword(credentialsId: 'github-login', usernameVariable: 'USERNAME', passwordVariable: 'PASSWORD')]) {
+                                sh("git push  https://USERNAME:PASSWORD@github.com/fabianrp7/timeoff-management-application.git")         
+                                }                            
                             }
                         }
                 }
