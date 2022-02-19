@@ -26,20 +26,22 @@ def call(body) {
                 stage('Build') {
                     steps {
                         script {
-                            //sh("npm install")                            
+                            //sh("npm install") 
+                            println "test"    
+                            sleep 9000                       
                             }
                         }
                 }
 
-                stage('Publish') {
-                    steps {
-                        script {
-                            sleep 9000
-                            // sh("npm publish") 
+                // stage('Publish') {
+                //     steps {
+                //         script {
+                //             //sleep 9000
+                //             sh("npm publish") 
                                                                                        
-                            }
-                        }
-                }
+                //             }
+                //         }
+                // }
         }
     }
 }                
