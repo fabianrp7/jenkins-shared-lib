@@ -10,12 +10,15 @@ def call(body) {
         stages {
                 stage('Checkout') {
                     steps {
-                        script{                            
-                            if (post_0_message.contains('ci-skip')){
-                                println post_0_message
-                                currentBuild.result = 'ABORTED'
-                                error("ci-skip in last commit")                                 
-                            }
+                        script{
+                            if (binding.hasVariable('post_0_message')) {
+                                if (post_0_message.contains('ci-skip')){
+                                    println post_0_message
+                                    currentBuild.result = 'ABORTED'
+                                    error("ci-skip in last commit")                                 
+                                }
+                            }                            
+
                         }
                     }
                 }
