@@ -38,7 +38,7 @@ def call(body) {
                             sh("npm --no-git-tag-version version patch -m 'Version %s [ci-skip]'")
                             def packageJSON = readJSON file: 'package.json'
                             def packageJSONVersion = packageJSON.version
-                            sh('git push origin HEAD:${scm.branches[0].name} https://fabianrp7:Iamtop.7@github.com/fabianrp7/timeoff-management-application.git ')
+                            sh("git push origin HEAD:${scm.branches[0].name} https://fabianrp7:Iamtop.7@github.com/fabianrp7/timeoff-management-application.git")
                             }
                         }
                 }
