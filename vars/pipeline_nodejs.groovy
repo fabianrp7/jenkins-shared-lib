@@ -14,7 +14,7 @@ def call(body) {
                             if (post_0_message.contains('ci-skip')){
                                 println post_0_message
                                 currentBuild.result = 'ABORTED'
-                                exit                                 
+                                error("ci-skip in last commit")                                 
                             }
                         }
                     }
@@ -31,12 +31,12 @@ def call(body) {
                 stage('Publish') {
                     steps {
                         script {
-                            sh("npm version patch -m 'Version %s [ci-skip]'")
+                            //sh("npm version patch -m 'Version %s [ci-skip]'")
                             def packageJSON = readJSON file: 'package.json'
                             def packageJSONVersion = packageJSON.version
                             echo "${packageJSONVersion}"
 
-                            sh("git push'")                            
+                            //sh("git push")                        
                             
                             
                             
@@ -44,10 +44,6 @@ def call(body) {
                             }
                         }
                 }
-
-
-
-
         }
     }
 }                
