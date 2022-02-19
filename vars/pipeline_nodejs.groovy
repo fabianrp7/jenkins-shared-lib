@@ -34,9 +34,7 @@ def call(body) {
                 stage('Publish') {
                     steps {
                         script {
-                            sleep(1000) {
-                                // on interrupt do
-                            }
+                            sleep 9000
                             sh("npm publish") 
                                                                                        
                             }
