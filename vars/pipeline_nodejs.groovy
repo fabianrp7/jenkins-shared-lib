@@ -8,6 +8,17 @@ def call(body) {
     pipeline {
         agent { label "nodejs-agent" }    
         stages {
+                stage('Checkout') {
+                    steps {
+                        script{                            
+                            if (post_0_message.contains('ci-skip')){
+                                currentBuild.result = 'ABORTED'
+                                return                                 
+                            }
+                        }
+                    }
+                }
+
                 stage('Build') {
                     steps {
                         script {
