@@ -40,7 +40,7 @@ def call(body) {
                                 def packageJSONVersion = packageJSON.version                                
                                 sh("git config user.name 'fabianrp7'")
                                 sh("git config user.email '7fabian.rodriguez@gmail.com'")
-                                sh("git push HEAD:${scm.branches[0].name}")         
+                                sh("git push HEAD:${scm.branches[0].name} HEAD:${scm.branches[0].name}")         
                                                             
                             }
                         }
