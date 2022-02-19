@@ -26,7 +26,7 @@ def call(body) {
                 stage('Build') {
                     steps {
                         script {
-                            sh("npm install")                            
+                            //sh("npm install")                            
                             }
                         }
                 }
@@ -35,7 +35,7 @@ def call(body) {
                     steps {
                         script {
                             sleep 9000
-                            sh("npm publish") 
+                            //sh("npm publish") 
                                                                                        
                             }
                         }
