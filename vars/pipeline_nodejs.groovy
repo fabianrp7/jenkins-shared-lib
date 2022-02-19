@@ -14,7 +14,7 @@ def call(body) {
                             if (post_0_message.contains('ci-skip')){
                                 println post_0_message
                                 currentBuild.result = 'ABORTED'
-                                return                                 
+                                exit                                 
                             }
                         }
                     }
