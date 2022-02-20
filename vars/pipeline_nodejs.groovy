@@ -19,7 +19,7 @@ def call(body) {
                 stage('Build') {
                     steps {
                         script {
-                            sh("npm install") 
+                            //sh("npm install") 
                             }
                         }
                 }
@@ -27,7 +27,7 @@ def call(body) {
                 stage('Publish') {
                     steps {
                         script {
-                            sh("npm publish") 
+                            //sh("npm publish") 
                             }
                         }
                 }
@@ -36,15 +36,15 @@ def call(body) {
                     steps {
                         script {
                             def packageJSON = readJSON file: 'package.json'
-                            def packageJSONVersion = packageJSON.version
                             println packageJSONVersion
                             sleep 9000
-                            sh("mv Dockerfile mv Dockerfile-${packageJSON.version}")
+                            sh("mv Dockerfile Dockerfile-${packageJSON.version}")
                             sh("kubectl cp Dockerfile-${packageJSON.version} dood:/home -n gorilla-logic") 
                             sh("kubectl exec dood -- docker image build -f /home/Dockerfile-${packageJSON.version} /home/ --tag fabianrp7/timeoff:${packageJSON.version}") 
                             sh("kubectl exec dood -- docker login --username=fabianrp7 --password=fabrodpe2077*") 
                             sh("kubectl exec dood -- docker push fabianrp7/timeoff:${packageJSON.version}")
                             sh("kubectl exec dood -- docker rmi fabianrp7/timeoff:${packageJSON.version}")
+                            sh("kubectl exec dood -- rm Dockerfile-${packageJSON.version}")
                             }
                         }
                 }
