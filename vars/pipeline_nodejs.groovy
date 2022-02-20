@@ -14,15 +14,11 @@ def call(body) {
                 }
 
                 stage('Build') {
-
                     sh("npm install") 
-
                 }
 
                 stage('Publish') {
-
                     sh("npm publish") 
-
                 }
 
                 stage('Docker build & push image') {
@@ -36,15 +32,9 @@ def call(body) {
                             sh("kubectl exec dood -- rm /home/Dockerfile-${packageJSON.version}")                          
                 }
 
-                // stage('Kubernetes Deploy') {
-                //             sh("sed -i 's/old-text/new-text/g' deployment.yaml")
-                //             sh("mv Dockerfile Dockerfile-${packageJSON.version}")
-                //             sh("kubectl cp Dockerfile-${packageJSON.version} dood:/home -n gorilla-logic") 
-                //             sh("kubectl exec dood -- docker image build -f /home/Dockerfile-${packageJSON.version} /home/ --tag fabianrp7/timeoff:${packageJSON.version}") 
-                //             sh("kubectl exec dood -- docker login --username=fabianrp7 --password=fabrodpe2077*") 
-                //             sh("kubectl exec dood -- docker push fabianrp7/timeoff:${packageJSON.version}")
-                //             sh("kubectl exec dood -- docker rmi fabianrp7/timeoff:${packageJSON.version}")
-                //             sh("kubectl exec dood -- rm /home/Dockerfile-${packageJSON.version}")                          
-                // }
+                stage('Kubernetes Deploy') {
+                            sh("sed -i 's/timeoff:tag/timeoff:${packageJSON.version}/g' deployment.yaml")
+                            sh("kubectl apply -f deployment.yaml -n gorilla-logic")                                                     
+                }
     }
 }
