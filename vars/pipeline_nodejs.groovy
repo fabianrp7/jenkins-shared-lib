@@ -1,6 +1,5 @@
 def call(body) {    
-        node{    
-        stages {
+        node{ 
                 stage('Checkout') {
                     steps {
                         script{
@@ -46,6 +45,5 @@ def call(body) {
                             }
                         }
                 }
-        }
     }
 }
