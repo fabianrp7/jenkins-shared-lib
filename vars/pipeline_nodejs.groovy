@@ -1,5 +1,6 @@
 def call(body) {    
     pipeline {
+        node {   
         stages {
                 stage('Checkout') {
                     steps {
@@ -31,21 +32,22 @@ def call(body) {
                         }
                 }
 
-                // stage('Docker build & push image') {
-                //     steps {
-                //         script {
-                //             def packageJSON = readJSON file: 'package.json'
-                //             sleep 9000
-                //             sh("mv Dockerfile Dockerfile-${packageJSON.version}")
-                //             sh("kubectl cp Dockerfile-${packageJSON.version} dood:/home -n gorilla-logic") 
-                //             sh("kubectl exec dood -- docker image build -f /home/Dockerfile-${packageJSON.version} /home/ --tag fabianrp7/timeoff:${packageJSON.version}") 
-                //             sh("kubectl exec dood -- docker login --username=fabianrp7 --password=fabrodpe2077*") 
-                //             sh("kubectl exec dood -- docker push fabianrp7/timeoff:${packageJSON.version}")
-                //             sh("kubectl exec dood -- docker rmi fabianrp7/timeoff:${packageJSON.version}")
-                //             sh("kubectl exec dood -- rm Dockerfile-${packageJSON.version}")
-                //             }
-                //         }
-                // }
+                stage('Docker build & push image') {
+                    steps {
+                        script {
+                            def packageJSON = readJSON file: 'package.json'
+                            sleep 9000
+                            sh("mv Dockerfile Dockerfile-${packageJSON.version}")
+                            sh("kubectl cp Dockerfile-${packageJSON.version} dood:/home -n gorilla-logic") 
+                            sh("kubectl exec dood -- docker image build -f /home/Dockerfile-${packageJSON.version} /home/ --tag fabianrp7/timeoff:${packageJSON.version}") 
+                            sh("kubectl exec dood -- docker login --username=fabianrp7 --password=fabrodpe2077*") 
+                            sh("kubectl exec dood -- docker push fabianrp7/timeoff:${packageJSON.version}")
+                            sh("kubectl exec dood -- docker rmi fabianrp7/timeoff:${packageJSON.version}")
+                            sh("kubectl exec dood -- rm Dockerfile-${packageJSON.version}")
+                            }
+                        }
+                }
         }
     }
+}
 }
