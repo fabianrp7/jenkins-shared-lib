@@ -1,18 +1,20 @@
 def call(body) {    
         node{ 
                 stage('Checkout') {
-                            // if (binding.hasVariable('post_0_message')) {
-                            //     if (post_0_message.contains('ci-skip')){
-                            //         println post_0_message
-                            //         currentBuild.result = 'ABORTED'
-                            //         error("ci-skip in last commit")                                 
-                            //     }
-                            // }
+                    // if (binding.hasVariable('post_0_message')) {
+                    //     if (post_0_message.contains('ci-skip')){
+                    //         println post_0_message
+                    //         currentBuild.result = 'ABORTED'
+                    //         error("ci-skip in last commit")                                 
+                    //     }
+                    // }
+                    cleanWs()
+                    scm
                 }
 
                 stage('Build') {
 
-                            sh("npm install") 
+                    sh("npm install") 
 
                 }
 
