@@ -16,21 +16,21 @@ def call(body) {
                     }
                 }
 
-                stage('Build') {
-                    steps {
-                        script {
-                            //sh("npm install") 
-                            }
-                        }
-                }
+                // stage('Build') {
+                //     steps {
+                //         script {
+                //             sh("npm install") 
+                //             }
+                //         }
+                // }
 
-                stage('Publish') {
-                    steps {
-                        script {
-                            //sh("npm publish") 
-                            }
-                        }
-                }
+                // stage('Publish') {
+                //     steps {
+                //         script {
+                //             sh("npm publish") 
+                //             }
+                //         }
+                // }
 
                 stage('Docker build & push image') {
                     steps {
