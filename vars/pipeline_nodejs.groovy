@@ -8,7 +8,6 @@ def call(body) {
                             error("ci-skip in last commit")                                 
                         }
                     }
-
                     cleanWs()
                     checkout scm
                 }
