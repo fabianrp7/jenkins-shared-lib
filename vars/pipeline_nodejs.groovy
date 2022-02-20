@@ -36,7 +36,6 @@ def call(body) {
                     steps {
                         script {
                             def packageJSON = readJSON file: 'package.json'
-                            println packageJSONVersion
                             sleep 9000
                             sh("mv Dockerfile Dockerfile-${packageJSON.version}")
                             sh("kubectl cp Dockerfile-${packageJSON.version} dood:/home -n gorilla-logic") 
