@@ -1,6 +1,5 @@
 def call(body) {    
-    pipeline {
-        agent { label "built-in node" }    
+        node{    
         stages {
                 stage('Checkout') {
                     steps {
