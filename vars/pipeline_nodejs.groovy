@@ -1,6 +1,5 @@
 def call(body) {    
     pipeline {
-        agent { label "nodejs-agent" }    
         stages {
                 stage('Checkout') {
                     steps {
