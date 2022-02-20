@@ -1,8 +1,6 @@
 def call(body) {    
         node{ 
                 stage('Checkout') {
-                    steps {
-                        script{
                             if (binding.hasVariable('post_0_message')) {
                                 if (post_0_message.contains('ci-skip')){
                                     println post_0_message
@@ -10,8 +8,6 @@ def call(body) {
                                     error("ci-skip in last commit")                                 
                                 }
                             }
-                        }
-                    }
                 }
 
                 stage('Build') {
