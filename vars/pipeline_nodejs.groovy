@@ -33,7 +33,7 @@ def call(body) {
                             sh("kubectl exec dood -- docker login --username=fabianrp7 --password=fabrodpe2077*") 
                             sh("kubectl exec dood -- docker push fabianrp7/timeoff:${packageJSON.version}")
                             sh("kubectl exec dood -- docker rmi fabianrp7/timeoff:${packageJSON.version}")
-                            sh("kubectl exec dood -- rm Dockerfile-${packageJSON.version}")                           
+                            sh("kubectl exec dood -- rm /home/Dockerfile-${packageJSON.version}")                          
                 }
     }
 }
