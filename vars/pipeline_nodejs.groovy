@@ -8,9 +8,8 @@ def call(body) {
                     //         error("ci-skip in last commit")                                 
                     //     }
                     // }
-                    checkout
                     cleanWs()
-                    scm
+                    checkout scm
                 }
 
                 stage('Build') {
